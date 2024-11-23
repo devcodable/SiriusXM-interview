@@ -12,10 +12,9 @@ struct SwiftRecipeApp: App {
                     }
                 
                 RecipeListViewControllerBridge()
-                .tabItem {
-                    Label("UIKit", systemImage: "square.stack.3d.down.forward")
-                }
-                
+                    .tabItem {
+                        Label("UIKit", systemImage: "square.stack.3d.down.forward")
+                    }
             }
         }
     }
