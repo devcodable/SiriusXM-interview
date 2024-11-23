@@ -1,7 +1,7 @@
 
 import Foundation
 
-struct Recipe: Identifiable, Codable {
+struct Recipe: Identifiable, Codable, Equatable {
     let id: String
     let publisher: String
     let title: String
