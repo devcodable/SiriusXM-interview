@@ -5,7 +5,6 @@ import SwiftUI
 struct SwiftRecipeApp: App {
     var body: some Scene {
         WindowGroup {
-            // TODO: - #1: choose a UI interface (feel free to change the order of the tabs)
             TabView {
                 RecipeListView()
                     .tabItem {
