@@ -7,7 +7,6 @@ struct RecipeListView: View {
     @ObservedObject private var viewModel = RecipeListViewModel()
     
     private let imageSize: CGFloat = 44
-    
     private var dividerPadding: CGFloat {
         16 + imageSize + 8
     }
@@ -30,8 +29,11 @@ struct RecipeListView: View {
                     ScrollView {
                         LazyVStack(spacing: 10) {
                             ForEach(recipes) { recipe in
-                                buildCell(recipe)
-                                    .padding(.horizontal, 16)
+                                NavigationLink(destination: RecipeDetailView(viewModel: RecipeDetailViewModel(recipe: recipe))) {
+                                    buildCell(recipe)
+                                        .padding(.horizontal, 16)
+                                }
+                                .buttonStyle(PlainButtonStyle())
                                 
                                 if recipe != recipes.last {
                                     Divider()
@@ -45,6 +47,7 @@ struct RecipeListView: View {
             }
             .navigationTitle("Recipes")
         }
+        .animation(.easeInOut, value: viewModel.state)
     }
     
     private var searchBar: some View {
