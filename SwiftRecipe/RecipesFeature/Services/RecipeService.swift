@@ -81,3 +81,22 @@ struct RecipeService {
         }
     }
 }
+
+extension RecipeService.APIError: LocalizedError {
+    public var errorDescription: String? {
+        switch self {
+        case .badRequest(let int):
+            "Bad request: \(int)"
+        case .invalidStatus:
+            "Invalid status"
+        case .networkError(let uRLError):
+            "Network error: \(uRLError)"
+        case .serviceError:
+            "Service error"
+        case .unableToDecodeResponse(let string):
+            "Unable to decode response: \(string)"
+        case .unknownError:
+            "Unknown error"
+        }
+    }
+}
