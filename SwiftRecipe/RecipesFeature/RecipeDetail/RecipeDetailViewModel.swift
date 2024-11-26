@@ -6,12 +6,16 @@ import Foundation
 @MainActor
 final class RecipeDetailViewModel: ObservableObject {
     let recipe: Recipe
-    private let service = RecipeService()
+    private let service: RecipeServiceInterface
     
     @Published var state: State
 
-    init(recipe: Recipe) {
+    init(
+        recipe: Recipe,
+        service: RecipeServiceInterface = RecipeService()
+    ) {
         self.recipe = recipe
+        self.service = service
         self.state = .loading
     }
     
