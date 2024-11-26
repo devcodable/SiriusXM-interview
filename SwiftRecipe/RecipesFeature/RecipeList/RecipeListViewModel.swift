@@ -9,9 +9,9 @@ final class RecipeListViewModel: ObservableObject {
     @Published var state: State
     @Published var userPrompt: String
     
-    private let recipeService: RecipeService
+    private let recipeService: RecipeServiceInterface
 
-    init(recipeService: RecipeService = RecipeService()) {
+    init(recipeService: RecipeServiceInterface = RecipeService()) {
         self.state = State()
         self.userPrompt = ""
         self.recipeService = recipeService

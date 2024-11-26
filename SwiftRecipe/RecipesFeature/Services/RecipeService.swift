@@ -1,7 +1,12 @@
 
 import Foundation
 
-struct RecipeService {
+protocol RecipeServiceInterface {
+    func searchRecipe(query: String) async throws(APIError) -> SearchResponse
+    func fetchRecipeDetails(id: String) async throws(APIError) -> Recipe
+}
+
+struct RecipeService: RecipeServiceInterface {
     struct RecipesAPI {
         let searchURL: URL
         let detailsURL: URL
@@ -14,15 +19,6 @@ struct RecipeService {
             self.searchURL = searchURL
             self.detailsURL = detailsURL
         }
-    }
-    
-    enum APIError: Error {
-        case badRequest(Int)
-        case invalidStatus
-        case networkError(URLError)
-        case serviceError
-        case unableToDecodeResponse(String)
-        case unknownError
     }
     
     private let api: RecipesAPI
@@ -82,7 +78,17 @@ struct RecipeService {
     }
 }
 
-extension RecipeService.APIError: LocalizedError {
+
+enum APIError: Error {
+    case badRequest(Int)
+    case invalidStatus
+    case networkError(URLError)
+    case serviceError
+    case unableToDecodeResponse(String)
+    case unknownError
+}
+
+extension APIError: LocalizedError {
     public var errorDescription: String? {
         switch self {
         case .badRequest(let int):
