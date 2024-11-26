@@ -2,7 +2,7 @@
 import Foundation
 
 extension Recipe {
-    static let preview: Self = .init(
+    static let preview: Self = Recipe(
         id: "35107",
         publisher: "Closet Cooking",
         title: "Bacon Double Cheese Burger Dip",
